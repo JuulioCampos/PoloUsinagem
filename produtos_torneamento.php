@@ -15,7 +15,7 @@
 
   $conexao = novaConexao();
 
-  $sql = "SELECT id, titulo, descricao, imagem FROM produtos_t2"; 
+  $sql = "SELECT id, titulo, descricao, imagem, datap FROM produtos_t2"; 
 
 
   $resultado = $conexao->query($sql);
@@ -37,13 +37,18 @@
           <div class="row">
               <?php foreach($produtos as $produto):?>
               <div class=" col-md-3" >
-                  <img class="img-thumbnail" src="fotos/<?= $produto['imagem'];?>" alt="<?= $produto['titulo']?>">
+                  <img class="img-thumbnail" src="imagens/produtos/<?= $produto['imagem'];?>" alt="<?= $produto['titulo']?>">
                   <div class="card-body fer">
                       <h5 class="card-title"><?= $produto['titulo']?></h5>
                       <p class="card-text"><?= $produto['descricao']?></p>
                   </div>
                   <div class="card-footer">
-                      <small class="text-muted">Ultima atualização a %d minutos</small>
+                      <small class="text-muted">      
+                        <?php 
+                            $datap = $produto['datap'];
+                            $date = new DateTime("$datap");
+                            echo "Última atualização em ".$date->format("d/m/Y  H:i ");
+                        ?></small>
                   </div>
               </div>
               <?php endforeach ?>

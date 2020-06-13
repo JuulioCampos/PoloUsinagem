@@ -28,4 +28,4 @@ if($resultado){
 $conexao -> close();
 
 echo '<br /> <br /> <button href="../index.html">voltar ao inicio</button>';
-header("location: ../dashboard.php?tabela=sucesso");
+header("location: ../dashboard.php?page=tabela_criado_sucesso");

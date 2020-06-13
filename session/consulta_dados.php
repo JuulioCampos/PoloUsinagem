@@ -60,9 +60,6 @@ $conexao->close();
             <?php endforeach ?>
     </tbody>
 </table>
-    </div>
-        <a class="btn btn-secondary btn-lg" href="../dashboard.php">VOLTAR PARA DASHBOARD</button></a>
-    </div>
 <style>
     table > *{
         font-size: 1.2rem;

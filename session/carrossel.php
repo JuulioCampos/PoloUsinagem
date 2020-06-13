@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>Inserindo produtos do fresamento</h1>
+    <h1>Inserindo imagens no carrossel</h1>
 
 
 
@@ -18,13 +18,21 @@
         <div class="conteiner ">
             <div class="form-group ">
                 <br />
-                <label for="titulo" class="bold">Título para produto a ser postado</label>
-                <input maxlength="20" id="titulo" type="text" name="titulo" placeholder="digíte um nome do título">
+                <label for="titulo" class="bold">Título para o carrossel</label>
+                <input id="titulo" type="text" name="titulo" placeholder="digíte um nome do título">
+            </div>
+            <div class="form-group ">
+                <label for="ordem">ordem do carrossel</label>
+                <select name="ordem" id="ordem" value="Ordem do carrossel">
+                    <option id='1' value="1">1</option>
+                    <option id='2' value="2">2</option>
+                    <option id='3' value="3">3</option>
+                </select>
             </div>
         
             <div class="form-group ">
-                <label for="descricao" class="bold">Descrição do produto</label>
-                <textarea maxlength="200" id="descricao" type="text" rows="4" cols="50"" name="descricao" placeholder="digíte uma descrição para o produto"></textarea>
+                <label for="descricao" class="bold">Descrição do carrossel</label>
+                <textarea id="descricao" type="text" rows="4" cols="50"" name="descricao" placeholder="digíte uma descrição para o produto"></textarea>
             </div>
         
             <div class="form-group ">
@@ -35,6 +43,7 @@
 
             <input type="submit" name="cadastrar" value="CADASTRAR" class="btn btn-primary btn-lg">
             <hr />
+            <a class="btn btn-secondary btn-lg" href="../dashboard.php">VOLTAR</button></a>
         </div>
     </div>
 </form>
@@ -54,9 +63,9 @@ if(isset($_POST['cadastrar'])){
 
 
     if(!empty($foto['name'])){
-        $largura = 1080;
+        $largura = 1920;
         $altura = 1080;
-        $tamanho = 500000;
+        $tamanho = 1500000;
 
         $error = array();
 
@@ -71,20 +80,20 @@ if(isset($_POST['cadastrar'])){
          if($foto["size"] > $tamanho) {
                 $error[4] = "A imagem deve ter no máximo ".$tamanho." bytes";
         }
-        
+        $ordemPost = $_POST["ordem"];
         if (count($error) == 0) {
         
             // Pega extensão da imagem
             preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i", $foto["name"], $ext);
             // Gera um nome único para a imagem
-            $nome_imagem = md5(uniqid(time())) . "." . $ext[1];
+            $nome_imagem = 'carrossel-img' ."$ordemPost" . "." . $ext[1];
             // Caminho de onde ficará a imagem
-            $caminho_imagem = "../imagens/produtos/" . $nome_imagem;
+            $caminho_imagem = "../imagens/carrossel/" . $nome_imagem;
             // Faz o upload da imagem para seu respectivo caminho
             move_uploaded_file($foto["tmp_name"], $caminho_imagem);
         
             // Insere os dados no banco
-            $sql = "INSERT INTO produtos_t1(titulo, descricao, imagem, datap) VALUES ('$titulo', '$descricao', '$nome_imagem', NOW())";
+            $sql = "REPLACE INTO carrossel(id, titulo, descricao, imagem) VALUES ('$ordemPost', '$titulo', '$descricao', '$nome_imagem')";
 
      
         

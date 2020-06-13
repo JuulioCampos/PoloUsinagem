@@ -22,5 +22,5 @@ $conexao -> close();
 
 echo '<br /> <br /> <a href="../index.html" ><button > voltar ao inicio</button></a>';
 
-header("location: ../dashboard.php?banco=sucesso");
+header("location: ../dashboard.php?page=banco_criado_sucesso");
 

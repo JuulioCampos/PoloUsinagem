@@ -19,12 +19,12 @@
             <div class="form-group ">
                 <br />
                 <label for="titulo" class="bold">Título para produto a ser postado</label>
-                <input id="titulo" type="text" name="titulo" placeholder="digíte um nome do título">
+                <input maxlength="20" id="titulo" type="text" name="titulo" placeholder="digíte um nome do título">
             </div>
         
             <div class="form-group ">
                 <label for="descricao" class="bold">Descrição do produto</label>
-                <textarea id="descricao" type="text" rows="4" cols="50"" name="descricao" placeholder="digíte uma descrição para o produto"></textarea>
+                <textarea maxlength="200"  id="descricao" type="text" rows="4" cols="50"" name="descricao" placeholder="digíte uma descrição para o produto"></textarea>
             </div>
         
             <div class="form-group ">
@@ -35,7 +35,6 @@
 
             <input type="submit" name="cadastrar" value="CADASTRAR" class="btn btn-primary btn-lg">
             <hr />
-            <a class="btn btn-secondary btn-lg" href="../dashboard.php">VOLTAR</button></a>
         </div>
     </div>
 </form>
@@ -80,24 +79,24 @@ if(isset($_POST['cadastrar'])){
             // Gera um nome único para a imagem
             $nome_imagem = md5(uniqid(time())) . "." . $ext[1];
             // Caminho de onde ficará a imagem
-            $caminho_imagem = "../fotos/" . $nome_imagem;
+            $caminho_imagem = "../imagens/produtos/" . $nome_imagem;
             // Faz o upload da imagem para seu respectivo caminho
             move_uploaded_file($foto["tmp_name"], $caminho_imagem);
         
             // Insere os dados no banco
-            $sql = "INSERT INTO produtos_t2(titulo, descricao, imagem) VALUES ('$titulo', '$descricao', '$nome_imagem')";
+            $sql = "INSERT INTO produtos_t2(titulo, descricao, imagem, datap) VALUES ('$titulo', '$descricao', '$nome_imagem', NOW())";
 
      
         
             // Se os dados forem inseridos com sucesso
             if ($sql){
-                echo "Upload realizado com sucesso";
+                echo "<script> alert('Upload realizado com sucesso')</script>";
             }
         }
          // Se houver mensagens de erro, exibe-as
          if (count($error) != 0) {
             foreach ($error as $erro) {
-                echo $erro . "<br />";
+                echo "<script> alert('$erro')</script>";
             }
         }
                $resultado = $conexao->query($sql);

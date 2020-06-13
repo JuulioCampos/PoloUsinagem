@@ -13,7 +13,7 @@ require_once 'conexao.php';
 
 
 
-$sql = "SELECT id, titulo, descricao, imagem FROM produtos_t2"; 
+$sql = "SELECT id, titulo, descricao, imagem, datap FROM produtos_t2"; 
 
 $conexao = novaConexao();
 if(!isset($_GET['excluir']) || $_GET['excluir']){
@@ -44,23 +44,23 @@ $conexao->close();
               <?php foreach($produtos as $produto):?>
               <div class=" col-md-3" >
                   <div class="card-header">
-                      <small class="btn btn-danger"><a href="excluir_produtos_fresamento.php?excluir=<?= $produto['id']?>" 
+                      <small class="btn btn-danger"><a href="excluir_produtos_torneamento.php?excluir=<?= $produto['id']?>" 
                         class="btn btn-danger">Excluir</a> </small>
                   </div>
-                  <img class="img-thumbnail" src="../fotos/<?= $produto['imagem'];?>" alt="<?= $produto['titulo']?>">
+                  <img class="img-thumbnail" src="../imagens/produtos/<?= $produto['imagem'];?>" alt="<?= $produto['titulo']?>">
                   <div class="card-body fer">
                       <h5 class="card-title"><?= $produto['titulo']?></h5>
                       <p class="card-text"><?= $produto['descricao']?></p>
                   </div>
                   <div class="card-footer">
-                      <small class="text-muted">Ultima atualização a %d minutos</small>
+                      <small class="text-muted">      <?php 
+                            $datap = $produto['datap'];
+                            $date = new DateTime("$datap");
+                            echo "Última atualização em ".$date->format("d/m/Y  H:i ");
+                        ?></small>
                   </div>
               </div>
               <?php endforeach ?>
           </div>
         </div>
       </div>
-
-      </div>
-        <a class="btn btn-secondary btn-lg" href="../dashboard.php">VOLTAR PARA DASHBOARD</button></a>
-    </div>

@@ -55,12 +55,12 @@ if(count($_POST) > 0){
     <div class="conteiner table-bordered">
         <div class="form-group ">
             <label for="usuario">Usuário</label>
-            <input id="usuario" type="text" name="usuario" placeholder="digíte um nome de usuário">
+            <input maxlength="20" id="usuario" type="text" name="usuario" placeholder="digíte um nome de usuário">
         </div>
     
         <div class="form-group ">
             <label for="senha">Senha</label>
-            <input id="senha" type="password" name="senha" placeholder="digíte uma senha até 20 digítos">
+            <input maxlength="20"  id="senha" type="password" name="senha" placeholder="digíte uma senha até 20 digítos">
         </div>
     
         <div class="form-group ">
@@ -74,26 +74,9 @@ if(count($_POST) > 0){
         </div>
 
         <button class="btn btn-primary btn-lg">CADASTRAR</button>
-        <hr />
-        <a class="btn btn-secondary btn-lg" href="../dashboard.php">VOLTAR</button></a>
     </div>
 </form>
 
-
-<!-- 
-$sql = "INSERT INTO cadastro(usuario, nome, senha, email ) VALUES ('admin', 'julio', 'admin', 'julio@la.com') ";
-
-    $conexao = novaConexao();
-
-    $resultado = $conexao->query($sql);
-
-    if($resultado){
-        echo "Dados inseridos";
-    }else {
-        echo "Falha, Erro: ". $conexao->error;
-    }
-
-    $conexao->close(); -->
     </body>
 </html>
 

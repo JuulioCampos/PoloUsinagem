@@ -19,7 +19,7 @@ $conexao = novaConexao();
        ?> <script> alert("Logado com sucesso")</script>
         <?php setcookie("login", $usuario);
         $_SESSION['user'] = $usuario;
-        header("location: ../dashboard.php?login=sucesso");
+        header("location: ../dashboard.php?page=sucesso");
     }else{
         header('Location: ../login.php?login=invalido');
     };  
