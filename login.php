@@ -6,7 +6,12 @@
 
   <body id="login">
     <?php require_once "header.html"; ?>
-
+    <?php if(isset($_SESSION['']))
+      ob_start();
+      header('location: dashboard.php?page=logado');
+      ob_end_clean();
+   ?>
+      
       <section id="login" class=""> <!-- Start Section Home -->
           <div class="container"><!-- Start Div Container -->
                   <div class="row">  <!-- Start Div Row -->
@@ -41,6 +46,7 @@
               </div> <!-- End Div Row -->
             </div> <!-- End Div Container -->
       </section> <!-- End Section Home -->
+     
 
       <?php require_once "footer.html"; ?>
           </body>
