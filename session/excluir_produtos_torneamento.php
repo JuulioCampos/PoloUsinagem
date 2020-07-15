@@ -32,7 +32,7 @@ if($resultado->num_rows > 0 ){
         $produtos[] = $row;
     }
 }else if($conexao->error){
-    echo 'Falha'. $conexao->error;
+    echo 'Falha: '. $conexao->error;
 }
 
 $conexao->close();

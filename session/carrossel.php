@@ -42,8 +42,7 @@
             <br />
 
             <input type="submit" name="cadastrar" value="CADASTRAR" class="btn btn-primary btn-lg">
-            <hr />
-            <a class="btn btn-secondary btn-lg" href="../dashboard.php">VOLTAR</button></a>
+
         </div>
     </div>
 </form>

@@ -1,9 +1,9 @@
-<?php require_once 'conexao.php' ?>
+<?php session_start();
+    require_once 'conexao.php'
+?>
 
 <?php 
-session_start();
-
-$conexao = novaConexao();
+    $conexao = novaConexao();
 
     $usuario = mysqli_real_escape_string($conexao, $_POST['usuario']);
     $senha = mysqli_real_escape_string($conexao, $_POST['senha']);
@@ -17,12 +17,13 @@ $conexao = novaConexao();
     if($rows > 0){
 
        ?> <script> alert("Logado com sucesso")</script>
-        <?php setcookie("login", $usuario);
-        $_SESSION['user'] = $usuario;
-        header("location: ../dashboard.php?page=sucesso");
-    }else{
-        header('Location: ../login.php?login=invalido');
-    };  
+        <?php 
+            setcookie("login", $usuario);
+            $_SESSION['user'] = $usuario;
+            header("location: ../dashboard.php?page=sucesso");
+        }else{
+            header('Location: ../login.php?login=invalido');
+        };  
 
     $conexao->close(); 
 
